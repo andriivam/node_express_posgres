@@ -13,8 +13,8 @@ client.connect()
 .then(() => {
   client.query("DELETE FROM users")
 for(let user of users) {
-    client.query(("insert into users values ($1, $2, $3, $4, $5)"),
-      [user.id, user.firstName, user.lastName, user.email, user.ip]);
+    client.query(("insert into users (first_name, last_name, email, ip) VALUES ($1, $2, $3, $4)"),
+      [user.firstName, user.lastName, user.email, user.ip]);
   };
 })
 

@@ -23,16 +23,15 @@ export const getOneUser = (req, res) => {
  };
 
  export const createUser = (req, res) => {
-    const { id, first_name, last_name, email, ip } = req.body;
+    const { first_name, last_name, email, ip } = req.body;
     client.query(
-        "INSERT INTO users (id, first_name, last_name, email, ip) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-        [id, first_name, last_name, email, ip],
+        "INSERT INTO users (first_name, last_name, email, ip) VALUES ($1, $2, $3, $4) RETURNING *",
+        [first_name, last_name, email, ip],
         (error, results) => {
         if (error) {
             console.log(error.message, "add new user");
         }
         res.send(`User added with ID: ${results.rows[0].id}`);
-        console.log(results);
         }
     );
 }
@@ -58,6 +57,7 @@ export const changeUser = (req, res) => {
     )
 }
 
+
 export const deleteUser = (req, res) => {
     const id = parseInt(req.params.id);
     client.query(`DELETE FROM users WHERE id =${id}`, (err, result) => {
@@ -68,4 +68,10 @@ export const deleteUser = (req, res) => {
             console.log(err.message)
         }
     })
+}
+
+
+const changeUserDetail = (req, res) => {
+    const id = parseInt(req.params.id)
+    const {first_name, last_name, email, ip} = req.body
 }

@@ -1,6 +1,5 @@
 import express from "express";
 import bodyParser from "body-parser";
-// import userRouter from './routes/user.mjs';
 import pg from "pg";
 import { getAllUsers, getOneUser, createUser, changeUser, deleteUser } from "./routes/controllers/user_cont.mjs"
 
@@ -8,7 +7,6 @@ const PORT = 3000;
 const app = express();
 
 app.use(bodyParser.json());
-// app.use('/api', userRouter);
 
 
 //connecting to our database
@@ -32,8 +30,8 @@ client.connect();
 // writing a POST request
     app.post("/users", createUser);
 
-// creating PUT request
-app.put("/users/:id", changeUser)
+// writing a PUT request
+    app.put("/users/:id", changeUser);
 
 // creating DELETE request
 app.delete("/users/:id" , deleteUser)

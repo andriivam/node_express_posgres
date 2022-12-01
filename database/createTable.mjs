@@ -12,7 +12,7 @@ const client = new Client({
 client.connect();
 
 const query = `CREATE TABLE IF NOT EXISTS "users" (
-    "id" int,
+    "id" SERIAL PRIMARY KEY,
     "first_name" varchar,
     "last_name" varchar,
     "email" varchar,
